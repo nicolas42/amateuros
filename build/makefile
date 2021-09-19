@@ -28,7 +28,7 @@ $(ASM_FILES):
 # Compile C source files into binary files, and pad out their size to next 512 byte sector size
 $(C_FILES):
 	@$(CC) -c $(CFLAGS) -o $@.o $(SRCDIR)$@.c
-	@ld -T$@.ld $@.o -z notext --oformat binary -o $@.bin
+	@ld -m elf_i386 -T$@.ld $@.o -z notext --oformat binary -o $@.bin
 	@rm -f $@.o
 	@size=$$(wc -c < $@.bin);\
 	size=$${size##*( )};\
